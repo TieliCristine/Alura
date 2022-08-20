@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class TestaListagem {
 
@@ -10,8 +7,9 @@ public class TestaListagem {
         ConnectionFactory factory = new ConnectionFactory();
         Connection conexao = factory.getConexao();
 
-        Statement stmt = conexao.createStatement();
-        stmt.execute(" SELECT * FROM produto; ");
+        String sql = " SELECT * FROM produto; ";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.execute();
 
         ResultSet resultado = stmt.getResultSet();
 

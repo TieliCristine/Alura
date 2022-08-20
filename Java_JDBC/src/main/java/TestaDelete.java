@@ -1,6 +1,6 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestaDelete {
 
@@ -8,9 +8,11 @@ public class TestaDelete {
         ConnectionFactory factory = new ConnectionFactory();
         Connection conexao = factory.getConexao();
 
-        Statement stmt = conexao.createStatement();
-//        stmt.execute(" DELETE FROM produto WHERE id > 2; ");
-        stmt.execute(" DELETE FROM produto WHERE id = 2; ");
+        String sql = " DELETE FROM produto WHERE id > ?; ";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+
+        stmt.setInt(1, 2);
+        stmt.execute();
         Integer linhasModificadas = stmt.getUpdateCount();
 
         System.out.println("Qtd. de linhas modificadas: " + linhasModificadas);

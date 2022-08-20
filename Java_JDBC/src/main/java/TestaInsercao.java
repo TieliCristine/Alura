@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class TestaInsercao {
 
@@ -9,9 +6,10 @@ public class TestaInsercao {
         ConnectionFactory factory = new ConnectionFactory();
         Connection conexao = factory.getConexao();
 
-        Statement stmt = conexao.createStatement();
         String sql = " INSERT INTO produto (nome, descricao) VALUES ('mouse', 'mouse sem fio')";
-        stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
+
+        PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        stmt.execute();
 
         ResultSet resultado = stmt.getGeneratedKeys();
 
