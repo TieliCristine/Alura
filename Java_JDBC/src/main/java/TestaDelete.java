@@ -11,7 +11,7 @@ public class TestaDelete {
         String sql = " DELETE FROM produto WHERE id > ?; ";
         PreparedStatement stmt = conexao.prepareStatement(sql);
 
-        stmt.setInt(1, 2);
+        stmt.setInt(1, 28);
         stmt.execute();
         Integer linhasModificadas = stmt.getUpdateCount();
 
